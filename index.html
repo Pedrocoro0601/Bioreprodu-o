@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biotecnologias da Reprodução Veterinária - A Campo</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #fdfaf6;
+            --text-color: #3a3a3a;
+            --primary-color: #8B4513; /* SaddleBrown */
+            --secondary-color: #556B2F; /* DarkOliveGreen */
+            --highlight-color: #CD853F; /* Peru */
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --red-color: #a52a2a; /* Brown */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            background-image: url('https://www.transparenttextures.com/patterns/leather.png'); /* Subtle texture */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--primary-color);
+        }
+        
+        .text-highlight {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+        
+        /* Interactive content cards */
+        .field-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(139, 69, 19, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .field-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .highlighted-card {
+            background-color: rgba(85, 107, 47, 0.1);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        /* Animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .reveal-zoom {
+             opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        /* Gallery styles */
+        .gallery-item {
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item .caption {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(to top, rgba(40, 25, 10, 0.9), transparent);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.75rem;
+            text-align: center;
+        }
+
+        /* Hero text animation */
+        .hero-title-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInWord 0.8s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            padding: 0 1.5rem;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 200px; /* Adjust as needed */
+            padding: 1rem 1.5rem 1.5rem;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* Animated Circle */
+        .circle-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+        .circle-svg {
+            transform: rotate(-90deg);
+        }
+        .circle-bg {
+            stroke: rgba(139, 69, 19, 0.1);
+            fill: none;
+            stroke-width: 10;
+        }
+        .circle-progress {
+            stroke: var(--secondary-color);
+            fill: none;
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 2s ease-out;
+        }
+        .is-visible .circle-progress {
+            stroke-dashoffset: 0;
+        }
+        .circle-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Merriweather', serif;
+            color: var(--secondary-color);
+            opacity: 0;
+            transition: opacity 1s ease-in 1s;
+        }
+        .is-visible .circle-text {
+            opacity: 1;
+        }
+
+        /* Arrow Info Box */
+        .info-arrow-box {
+            position: absolute;
+            bottom: -20px;
+            left: -120px;
+            width: 250px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out 1.5s, transform 1s ease-out 1.5s;
+            z-index: 10;
+        }
+
+        @media (max-width: 1023px) {
+            .info-arrow-box {
+                position: relative;
+                left: 50%;
+                bottom: auto;
+                width: 90%;
+                margin-top: 1rem;
+                transform: translateX(-50%) translateY(20px);
+            }
+            .info-arrow-box .info-arrow {
+                display: none;
+            }
+        }
+
+        .is-visible .info-arrow-box {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @media (max-width: 1023px) {
+            .is-visible .info-arrow-box {
+                 transform: translateX(-50%) translateY(0);
+            }
+        }
+
+
+        .info-arrow {
+             width: 80px;
+             height: 60px;
+        }
+        .info-bubble {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Timeline / Stepper for Fetal Programming */
+        .timeline-tabs button {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .timeline-tabs button.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        .timeline-content {
+            display: none;
+        }
+        .timeline-content.active {
+            display: block;
+        }
+
+        /* Animated Arrows */
+        .animated-arrow {
+            width: 32px;
+            height: 32px;
+            stroke-width: 3;
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+        }
+        .growth-arrow {
+            stroke: var(--secondary-color);
+        }
+        .fall-arrow {
+            stroke: var(--red-color);
+        }
+        .is-visible .animated-arrow {
+            animation: draw-arrow 1.5s ease-out forwards 0.5s;
+        }
+        @keyframes draw-arrow {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center text-center p-4 overflow-hidden bg-cover bg-center" style="background-image: linear-gradient(rgba(253, 250, 246, 0.3), rgba(253, 250, 246, 1)), url('https://images.unsplash.com/photo-1590622329383-0e690987595a?q=80&w=2070&auto=format&fit=crop');">
+        <div class="relative z-10">
+            <h1 class="text-4xl md:text-7xl font-bold leading-tight hero-title">
+                <span class="hero-title-word" style="animation-delay: 0.1s;">Biotecnologias</span>
+                <span class="hero-title-word" style="animation-delay: 0.2s;">da</span>
+                <span class="hero-title-word text-highlight" style="animation-delay: 0.3s;">Reprodução</span>
+            </h1>
+            <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-700 reveal" style="transition-delay: 0.8s;">
+                A chave para o futuro da pecuária de precisão.
+            </p>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-gray-600 animate-bounce">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-20 md:py-32 bg-white/50">
+        <div class="container mx-auto px-6">
+
+            <section class="text-center max-w-4xl mx-auto mb-24 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">COMO ESCOLHER A <span class="text-highlight">BIOTECNOLOGIA IDEAL?</span></h2>
+                <p class="mt-4 text-lg text-gray-600">
+                    A escolha da biotecnologia ideal para a reprodução bovina deve ser baseada em vários fatores, adaptados às necessidades e condições específicas do projeto. Diante disso, vejamos os principais pontos que devem ser considerados:
+                </p>
+            </section>
+
+            <section class="mb-24 flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 reveal">
+                    <h3 class="text-3xl font-bold mb-4">Propósito do Projeto</h3>
+                    <p class="text-gray-600">
+                        Produção de Carne ou Leite: O objetivo principal (produção de carne ou leite) irá influenciar a escolha da biotecnologia. Técnicas como IATF podem ser mais adequadas para produção de carne, enquanto a FIV pode ser preferida em rebanhos leiteiros de alta performance.
+                    </p>
+                     <p class="text-gray-600 mt-4">
+                        Dentro de uma mesma raça podemos ter objetivos de melhoramento genético diferentes.
+                    </p>
+                </div>
+                <div class="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 reveal" style="transition-delay: 200ms;">
+                    <div class="gallery-item rounded-lg">
+                        <img src="https://placehold.co/400x500/8B4513/FFFFFF?text=IMAGEM+1" alt="Produção de Carne" class="w-full h-full object-cover">
+                        <div class="caption">CORTE (PRODUÇÃO DE CARNE)</div>
+                    </div>
+                    <div class="gallery-item rounded-lg">
+                        <img src="https://placehold.co/400x500/556B2F/FFFFFF?text=IMAGEM+2" alt="Produção de Leite" class="w-full h-full object-cover">
+                        <div class="caption">LEITE (PRODUÇÃO DE LEITE)</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mb-24 text-center reveal">
+                <h3 class="text-3xl font-bold mb-4">Exemplos de Projetos</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div class="gallery-item rounded-md reveal" style="transition-delay: 100ms;"><img src="https://placehold.co/300x400/3a3a3a/fdfaf6?text=IMAGEM+1" class="w-full h-auto object-cover"><div class="caption text-sm">CEIP</div></div>
+                    <div class="gallery-item rounded-md reveal" style="transition-delay: 200ms;"><img src="https://placehold.co/300x400/3a3a3a/fdfaf6?text=IMAGEM+2" class="w-full h-auto object-cover"><div class="caption text-sm">GADO DE AVALIAÇÃO (PMGZ)</div></div>
+                    <div class="gallery-item rounded-md reveal" style="transition-delay: 300ms;"><img src="https://placehold.co/300x400/3a3a3a/fdfaf6?text=IMAGEM+3" class="w-full h-auto object-cover"><div class="caption text-sm">GADO DE PISTA</div></div>
+                    <div class="gallery-item rounded-md reveal" style="transition-delay: 400ms;"><img src="https://placehold.co/300x400/3a3a3a/fdfaf6?text=IMAGEM+4" class="w-full h-auto object-cover"><div class="caption text-sm">TOUROS</div></div>
+                    <div class="gallery-item rounded-md reveal" style="transition-delay: 500ms;"><img src="https://placehold.co/300x400/3a3a3a/fdfaf6?text=IMAGEM+5" class="w-full h-auto object-cover"><div class="caption text-sm">DOADORAS</div></div>
+                    <div class="gallery-item rounded-md reveal" style="transition-delay: 600ms;"><img src="https://placehold.co/300x400/3a3a3a/fdfaf6?text=IMAGEM+6" class="w-full h-auto object-cover"><div class="caption text-sm">RECEPTORAS</div></div>
+                </div>
+            </section>
+
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4">QUAIS SÃO AS CARACTERÍSTICAS <span class="text-highlight">GENÉTICAS E FENOTÍPICAS</span> A SEREM MELHORADAS?</h2>
+                </div>
+                
+                <div class="max-w-4xl mx-auto mb-12 reveal">
+                    <div class="field-card p-8 rounded-lg border-2 border-amber-600">
+                        <h4 class="text-2xl font-bold text-amber-700 mb-4 text-center">RELEMBRANDO</h4>
+                        <div class="space-y-4">
+                            <p><strong class="text-secondary-color">Características genéticas:</strong> São aquelas determinadas pelos genes e que, portanto, podem ser transmitidas aos descendentes.</p>
+                            <p><strong class="text-secondary-color">Características fenotípicas:</strong> Características fenotípicas são as características observáveis, como aparência física, comportamento e desenvolvimento, resultantes da interação entre seus genes e o ambiente.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-8 text-center reveal">QUAIS SÃO AS CARACTERÍSTICAS A SEREM MELHORADAS?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="field-card p-6 rounded-lg text-center reveal"><h4 class="text-xl font-bold mb-2">Precocidade reprodutiva</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold mb-2">Ossatura e aprumos corretos</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold mb-2">Capacidade de ganho de peso</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal"><h4 class="text-xl font-bold mb-2">Eficiência alimentar</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold mb-2">Fertilidade</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold mb-2">Resistência a doenças e longevidade</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal"><h4 class="text-xl font-bold mb-2">Habilidade materna</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold mb-2">Circunferência escrotal</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold mb-2">PTA, CCS, Úbere</h4></div>
+                </div>
+            </section>
+            
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">EXISTEM</span> CICLOS?</h2>
+                </div>
+                <div class="flex flex-col lg:flex-row items-center gap-12 mb-12">
+                    <div class="lg:w-1/2 reveal-zoom">
+                        <div class="gallery-item rounded-lg">
+                            <img src="https://placehold.co/600x400/8B4513/FFFFFF?text=Ciclo+da+Pecuária" alt="Ciclo da Pecuária" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 reveal" style="transition-delay: 200ms;">
+                         <p class="text-gray-600 text-lg">O ciclo da pecuária é descrito como uma "montanha-russa" de altos e baixos nos preços dos bezerros e nas taxas de abate de fêmeas, influenciados principalmente pelas leis de oferta e demanda. O ciclo pode ser dividido em fases de alta e baixa nos preços e na produção, e é afetado por diversos fatores econômicos e de mercado.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-4 reveal">
+                    <h3 class="text-2xl font-bold text-center mb-6">Principais Pontos do Ciclo da Pecuária</h3>
+                    <div class="accordion-item bg-white/70 border border-gray-200 rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left flex justify-between items-center p-6"><h4 class="text-xl font-bold">Oferta e Demanda</h4><span class="accordion-icon text-primary-color text-2xl font-bold">+</span></button>
+                        <div class="accordion-content"><p class="text-gray-600">A oferta de bezerros e a demanda por carne bovina são os principais determinantes do ciclo. Quando a oferta de bezerros é alta e a demanda é baixa, os preços caem, e vice-versa.</p></div>
+                    </div>
+                    <div class="accordion-item bg-white/70 border border-gray-200 rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left flex justify-between items-center p-6"><h4 class="text-xl font-bold">Taxas de Abate de Fêmeas</h4><span class="accordion-icon text-primary-color text-2xl font-bold">+</span></button>
+                        <div class="accordion-content"><p class="text-gray-600">O abate de fêmeas aumenta durante períodos de baixa no ciclo, o que leva a uma redução no rebanho e, eventualmente, a uma escassez de bezerros no futuro. Este aumento no abate de fêmeas é um indicativo de um ciclo de baixa.</p></div>
+                    </div>
+                    <div class="accordion-item bg-white/70 border border-gray-200 rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left flex justify-between items-center p-6"><h4 class="text-xl font-bold">Impacto Econômico</h4><span class="accordion-icon text-primary-color text-2xl font-bold">+</span></button>
+                        <div class="accordion-content"><p class="text-gray-600">A estabilidade ou instabilidade econômica, incluindo políticas governamentais e flutuações cambiais, pode influenciar o ciclo da pecuária. Uma moeda estável tende a estabilizar os preços, enquanto a instabilidade econômica pode causar flutuações bruscas.</p></div>
+                    </div>
+                     <div class="accordion-item bg-white/70 border border-gray-200 rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left flex justify-between items-center p-6"><h4 class="text-xl font-bold">Ciclo de Preços</h4><span class="accordion-icon text-primary-color text-2xl font-bold">+</span></button>
+                        <div class="accordion-content"><p class="text-gray-600">O ciclo de preços dos bezerros é uma característica marcante, com períodos de valorização seguidos de desvalorização. Este ciclo afeta diretamente a lucratividade dos produtores e suas decisões de manejo.</p></div>
+                    </div>
+                     <div class="accordion-item bg-white/70 border border-gray-200 rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left flex justify-between items-center p-6"><h4 class="text-xl font-bold">Planejamento a Longo Prazo</h4><span class="accordion-icon text-primary-color text-2xl font-bold">+</span></button>
+                        <div class="accordion-content"><p class="text-gray-600">Produtores experientes planejam suas atividades com base no ciclo da pecuária, ajustando estratégias de reprodução e venda de acordo com as previsões de mercado. Durante períodos de baixa, por exemplo, pode ser vantajoso investir em técnicas de reprodução avançadas para preparar-se para a recuperação do mercado.</p></div>
+                    </div>
+                    <div class="accordion-item bg-white/70 border border-gray-200 rounded-lg shadow-sm">
+                        <button class="accordion-header w-full text-left flex justify-between items-center p-6"><h4 class="text-xl font-bold">Dados Históricos</h4><span class="accordion-icon text-primary-color text-2xl font-bold">+</span></button>
+                        <div class="accordion-content"><p class="text-gray-600">A análise de dados históricos é crucial para entender e prever o ciclo da pecuária. O arquivo menciona dados coletados desde 1957, que ajudam a identificar padrões e fazer previsões sobre o comportamento futuro do mercado.</p></div>
+                    </div>
+                </div>
+                 <div class="text-center mt-12 reveal">
+                    <p class="text-gray-600 text-lg max-w-4xl mx-auto">Entender o ciclo da pecuária é essencial para a gestão eficiente e sustentável dos rebanhos. Conhecimento sobre os altos e baixos do mercado permite aos produtores tomar decisões informadas sobre reprodução, abate e investimentos em tecnologias reprodutivas, maximizando assim a produtividade e a rentabilidade a longo prazo.</p>
+                 </div>
+            </section>
+
+            <section class="mb-24">
+                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4">NECESSIDADE DE REPOSIÇÃO DE TOUROS PARA <span class="text-highlight">60 MILHÕES DE VACAS</span> DO REBANHO BRASILEIRO</h2>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row-reverse items-center justify-center gap-12 mb-16">
+                    <div class="lg:w-1/2 reveal-zoom relative flex justify-center items-center">
+                        <div class="relative w-full max-w-md">
+                            <div class="gallery-item rounded-lg">
+                                <img src="https://placehold.co/500x350/fdfaf6/3a3a3a?text=IMAGEM+DA+TABELA" alt="Tabela de reposição de touros" class="w-full h-auto object-cover">
+                            </div>
+                            <div class="info-arrow-box">
+                                <svg class="info-arrow" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 10 90 Q 30 20 90 10" stroke="#556B2F" fill="transparent" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#556B2F"/></marker></defs></svg>
+                                <div class="info-bubble">Os restantes dos 85% não possuem informações sobre a genética que está sendo passada aos seus filhos!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 reveal">
+                        <h3 class="text-2xl font-bold mb-6">Vamos Analisar a Tabela:</h3>
+                        <div class="space-y-6">
+                             <div class="flex items-start gap-4">
+                                <div class="circle-container reveal flex-shrink-0">
+                                    <svg class="circle-svg w-full h-full" viewBox="0 0 150 150">
+                                        <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
+                                        <circle class="circle-progress" cx="75" cy="75" r="70"></circle>
+                                    </svg>
+                                    <div class="circle-text text-center">
+                                        <span class="block text-3xl font-bold">15%</span>
+                                        <span class="block text-sm">DO MERCADO</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Estimativa do Rebanho</h4>
+                                    <p class="text-gray-600">O Brasil possui mais de 220 milhões de cabeças de gado, com aproximadamente 60 milhões de fêmeas em reprodução.</p>
+                                </div>
+                            </div>
+                             <div class="ml-8 mt-4 space-y-4">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Relação Touros/Fêmeas</h4>
+                                    <p class="text-gray-600">Para cada 30 fêmeas, é necessário um touro, resultando em uma necessidade de aproximadamente 2 milhões de touros ativos no Brasil por ano.</p>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Reposição Anual e Qualidade Genética</h4>
+                                    <p class="text-gray-600">Considerando uma taxa de reposição de 20%, são necessários 400 mil touros para reposição anualmente. Apenas uma fração (cerca de 15%) vem de programas de melhoramento, o que pode ser uma visão otimista.</p>
+                                </div>
+                                 <div>
+                                    <h4 class="text-xl font-bold mb-2">Desafio na Reposição</h4>
+                                    <p class="text-gray-600">Encontrar touros com as características genéticas desejáveis é um desafio, especialmente em quantidades suficientes para atender à demanda de rebanhos grandes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="mt-12 text-center max-w-4xl mx-auto reveal">
+                    <p class="text-gray-600 text-lg">Estes pontos ressaltam a importância de investimentos em biotecnologias reprodutivas e programas de melhoramento genético para atender à grande demanda por touros no Brasil, garantindo a eficiência e produtividade do rebanho bovino.</p>
+                 </div>
+            </section>
+
+            <section class="mb-24">
+                 <div class="text-center max-w-4xl mx-auto mb-16 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">ESTAÇÃO</span> REPRODUTIVA</h2>
+                     <p class="text-lg text-gray-600 mt-4">A estação de monta nos bovinos é o período específico do ano em que a reprodução é planejada e controlada para maximizar a eficiência reprodutiva do rebanho. Durante esse período, as fêmeas bovinas são expostas a técnicas de reprodução de eleição da propriedade, com o objetivo de garantir que a maior parte do rebanho conceba em um intervalo de tempo definido.</p>
+                     <p class="text-lg text-gray-600 mt-4">A estação de monta é estrategicamente estabelecida para coincidir com as melhores condições climáticas e de disponibilidade de pasto, de modo a otimizar a saúde e o desenvolvimento dos bezerros nascidos.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto reveal">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center">Programação Fetal</h3>
+                    <div class="flex flex-col lg:flex-row items-center gap-12 mb-12">
+                        <div class="lg:w-1/2 reveal-zoom">
+                             <div class="gallery-item rounded-lg">
+                                <img src="https://placehold.co/600x400/556B2F/FFFFFF?text=Programação+Fetal" alt="Programação Fetal" class="w-full h-auto object-cover">
+                            </div>
+                        </div>
+                        <div class="lg:w-1/2 reveal" style="transition-delay: 200ms;">
+                            <p class="text-gray-600">Note a importância de uma boa nutrição desde os primeiros meses de gestação para garantir a qualidade muscular, saúde do bezerro e como consequência maior peso a desmama.</p>
+                            <div id="timeline" class="mt-6">
+                                <div class="timeline-tabs flex justify-around border-b-2 border-gray-200 mb-4">
+                                    <button data-tab="1" class="timeline-tab active font-bold py-2 px-4">1º Trimestre</button>
+                                    <button data-tab="2" class="timeline-tab font-bold py-2 px-4">2º Trimestre</button>
+                                    <button data-tab="3" class="timeline-tab font-bold py-2 px-4">3º Trimestre</button>
+                                </div>
+                                <div class="timeline-content active" data-content="1">
+                                    <h4 class="text-xl font-bold mb-2">Formação Inicial (0-3 meses)</h4>
+                                    <p>Durante os três primeiros meses de gestação, ocorre a formação dos órgãos internos, tecido nervoso, e a miogênese primária (formação inicial do tecido muscular).</p>
+                                </div>
+                                <div class="timeline-content" data-content="2">
+                                     <h4 class="text-xl font-bold mb-2">Desenvolvimento Muscular (3-6 meses)</h4>
+                                    <p>Este período é crucial para a miogênese secundária, onde o número de células musculares é definido. A nutrição adequada da fêmea gestante durante este período é essencial para garantir um bom desenvolvimento muscular do bezerro.</p>
+                                </div>
+                                <div class="timeline-content" data-content="3">
+                                     <h4 class="text-xl font-bold mb-2">Hipertrofia e Formação de Gordura (6-9 meses)</h4>
+                                    <p>No último trimestre, o foco é o crescimento (hipertrofia) das células musculares já formadas e a formação de tecido adiposo (gordura). Uma nutrição inadequada nos primeiros dois trimestres não pode ser completamente compensada.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row-reverse items-center gap-12 mb-12">
+                    <div class="lg:w-1/2 reveal-zoom">
+                         <div class="gallery-item rounded-lg">
+                            <img src="https://placehold.co/600x400/8B4513/FFFFFF?text=Mês+de+Nascimento" alt="Mês de Nascimento" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 reveal" style="transition-delay: 200ms;">
+                        <h3 class="text-2xl font-bold mb-4">Mês de Nascimento</h3>
+                        <p class="text-gray-600 mb-4">A relação entre a programação fetal, o mês de nascimento dos bezerros e o peso à desmama é fundamental para otimizar a eficiência reprodutiva e a produtividade na pecuária bovina. Bezerros nascidos em períodos de melhores condições climáticas tendem a ter um desenvolvimento melhor.</p>
+                        <h4 class="text-xl font-bold mb-2">Analisando a Tabela:</h4>
+                        <p class="text-gray-600">Bezerros que nascem em agosto (no Brasil, um mês com boas condições de pastagem) desmamam com um peso significativamente maior comparado aos que nascem em janeiro, quando as condições não são ideais. Esse aumento de peso representa um ganho econômico significativo.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto reveal">
+                     <h3 class="text-2xl font-bold mb-8 text-center">Vantagens</h3>
+                     <div class="space-y-4">
+                        <div class="field-card p-4 rounded-lg flex justify-between items-center"><span class="font-bold">Vacas aptas no início da EM</span></div>
+                        <div class="field-card p-4 rounded-lg flex justify-between items-center"><span class="font-bold">Kg de bezerro desmamado/vaca</span></div>
+                        <div class="field-card p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-bold">Peso a desmama</span>
+                            <svg class="animated-arrow growth-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="field-card p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-bold">Taxa de prenhez</span>
+                             <svg class="animated-arrow growth-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="field-card p-4 rounded-lg flex justify-between items-center">
+                            <span class="font-bold">Produtividade e rentabilidade</span>
+                             <svg class="animated-arrow growth-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                     </div>
+                </div>
+            </section>
+            
+            <section class="mb-24 text-center">
+                <div class="max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4">COMO <span class="text-highlight">AUMENTAR A EFICIÊNCIA</span> DE UM SISTEMA DE CRIA?</h2>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 reveal">
+                    <div class="flex flex-col items-center gap-2">
+                        <h4 class="text-xl font-bold">Taxa de prenhez</h4>
+                         <svg class="animated-arrow growth-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                     <div class="flex flex-col items-center gap-2">
+                        <h4 class="text-xl font-bold">Perdas concepção - desmame</h4>
+                        <svg class="animated-arrow fall-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5V19M12 19L5 12M12 19L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                     <div class="flex flex-col items-center gap-2">
+                        <h4 class="text-xl font-bold">Peso ao desmame</h4>
+                         <svg class="animated-arrow growth-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                </div>
+                <div class="mt-12 max-w-4xl mx-auto reveal">
+                    <p class="text-gray-600 text-lg">A programação fetal e o mês de nascimento são fatores interligados que influenciam diretamente o peso dos bezerros à desmama. Um bom manejo reprodutivo, considerando esses aspectos, pode maximizar a produtividade e a rentabilidade na pecuária bovina, alinhando a nutrição da fêmea gestante com os períodos de melhor condição de pastagem para otimizar o desenvolvimento dos bezerros.</p>
+                </div>
+            </section>
+
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">AUDITAGEM E CONTROLE</span> DE ESTOQUE DO REBANHO</h2>
+                      <p class="text-lg text-gray-600 mt-4">A auditagem e o controle de estoque de rebanho são cruciais para a gestão eficiente da pecuária, pois permitem um monitoramento preciso e detalhado do desempenho e das necessidades do rebanho.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
+                     <div class="lg:w-1/2 reveal-zoom">
+                        <div class="gallery-item rounded-lg">
+                            <img src="https://placehold.co/600x400/8B4513/FFFFFF?text=Controle+do+Rebanho" alt="Controle do Rebanho" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 reveal">
+                         <h3 class="text-2xl font-bold mb-6">Importância</h3>
+                         <ul class="space-y-4 list-disc list-inside text-gray-600">
+                             <li><strong>Monitoramento Preciso:</strong> A auditagem permite que os produtores saibam exatamente quantos e quais animais estão no rebanho, evitando erros de contagem e identificação.</li>
+                             <li><strong>Identificação de Problemas:</strong> O controle rigoroso ajuda a identificar rapidamente problemas, como falhas reprodutivas, doenças ou animais que não estão desempenhando bem.</li>
+                             <li><strong>Tomada de Decisões Informadas:</strong> Com dados precisos, os produtores podem tomar decisões informadas sobre compras, vendas, reposições e melhorias genéticas.</li>
+                             <li><strong>Planejamento e Gestão:</strong> Facilita o planejamento a longo prazo, permitindo prever necessidades futuras de alimentação, espaço e cuidados veterinários.</li>
+                         </ul>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto reveal">
+                    <div class="field-card rounded-lg p-8 border-2 border-highlight-color">
+                        <h3 class="text-2xl font-bold mb-4 text-center">Exemplo na Prática: Caso 01</h3>
+                        <p class="text-gray-700 mb-4">Um produtor em Xinguara, que acreditava ter cerca de mil vacas, descobriu, após uma auditagem realizada durante uma vacinação, que na verdade possuía apenas 670 vacas. Esta discrepância de mais de 300 vacas mostrava uma enorme diferença entre a percepção e a realidade.</p>
+                        <p class="text-gray-700"><strong class="text-secondary-color">Ação:</strong> A partir da auditagem, foi possível numerar e registrar adequadamente todos os animais, melhorando o controle reprodutivo e a gestão do rebanho. Isso também permitiu um planejamento mais preciso para futuras compras e vendas, e melhorou a eficiência geral da operação.</p>
+                    </div>
+                </div>
+            </section>
+            
+             <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">BIOTECNOLOGIAS</span> DA REPRODUÇÃO</h2>
+                     <p class="text-lg text-gray-600 mt-4">Destaca-se que existem diversas biotecnologias, embora muitas não sejam amplamente difundidas comercialmente. Exemplos incluem:</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 100ms;"><h4 class="text-2xl font-bold">TIFOI</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;"><h4 class="text-2xl font-bold">MOET</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 300ms;"><h4 class="text-2xl font-bold">CLONAGEM</h4></div>
+                </div>
+                <div class="text-center max-w-2xl mx-auto reveal">
+                    <div class="p-6 rounded-lg highlighted-card">
+                        <h3 class="text-3xl font-bold">MELHORAMENTO GENÉTICO??</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold">TRANSFERÊNCIA INTRAFOLICULAR DE OVÓCITOS IMATUROS <span class="text-highlight">(TIFOI)</span></h2>
+                </div>
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                     <div class="lg:w-1/2 reveal-zoom">
+                        <div class="gallery-item rounded-lg">
+                            <img src="https://placehold.co/400x600/556B2F/FFFFFF?text=TIFOI" alt="TIFOI" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 reveal">
+                        <p class="text-gray-600 mb-8">A TIFOI é uma técnica emergente em reprodução bovina que envolve três tipos de animais: doadoras, ovuladoras e receptoras. A doadora fornece os oócitos imaturos, que são aspirados e introduzidos nos folículos pré-ovulatórios da fêmea ovuladora. Após a ovulação induzida, a fêmea ovuladora é inseminada e, depois de sete dias, realiza-se uma lavagem uterina para coletar os embriões formados, que podem ser implantados nas receptoras ou congelados. Esta técnica não necessita de um laboratório de alto custo, mas possui complicações relacionadas ao controle preciso de ovulação e fertilização.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Não requer um laboratório de alto custo</li>
+                                    <li>Praticidade</li>
+                                    <li>Pode ser realizada diretamente no campo</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-red-color mb-3">Desvantagens</h4>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Complicações hormonais</li>
+                                    <li>Necessita de controle preciso</li>
+                                    <li>Eficiência variável</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold"><span class="text-highlight">CLONAGEM</span></h2>
+                </div>
+                 <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                     <div class="lg:w-1/2 reveal-zoom">
+                        <div class="gallery-item rounded-lg">
+                            <img src="https://placehold.co/600x400/8B4513/FFFFFF?text=CLONAGEM" alt="Clonagem" class="w-full h-auto object-cover">
+                        </div>
+                    </div>
+                    <div class="lg:w-1/2 reveal">
+                        <p class="text-gray-600 mb-8">A clonagem é uma biotecnologia avançada que permite a criação de cópias genéticas de um animal. O processo envolve a coleta de material genético de um animal desejado, que é inserido em um óvulo enucleado, criando um embrião clonado. Este embrião é então implantado em uma receptora. Embora a clonagem não seja considerada uma técnica de melhoramento genético por si só, ela permite a reprodução de indivíduos com características genéticas desejáveis. Atualmente, a clonagem é mais comum em equinos, mas também é aplicada em bovinos para fins específicos.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Multiplicação de animais superiores</li>
+                                    <li>Consistência genética</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-red-color mb-3">Desvantagens</h4>
+                                <ul class="list-disc list-inside space-y-2">
+                                    <li>Custo elevado</li>
+                                    <li>Limitações éticas e legais</li>
+                                    <li>Não proporciona melhoramento genético</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="p-4 rounded-lg highlighted-card text-center">
+                            <h3 class="text-2xl font-bold">MELHORAMENTO GENÉTICO??</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold">MÚLTIPLA OVULAÇÃO E TRANSFERÊNCIA DE EMBRIÕES <span class="text-highlight">(MOET)</span></h2>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex flex-col lg:flex-row items-center gap-8 reveal">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold mb-3">Como é Realizada?</h3>
+                            <p><strong>Superovulação:</strong> A doadora é submetida a um protocolo de superovulação para estimular a ovulação de múltiplos folículos. Isso geralmente envolve a administração de hormônios como o FSH (hormônio folículo-estimulante).</p>
+                             <p class="mt-2"><strong>Inseminação:</strong> Após a superovulação, a doadora é inseminada com sêmen de alta qualidade, geralmente de touros melhoradores.</p>
+                             <p class="mt-2"><strong>Lavagem Uterina:</strong> Cerca de 7 dias após a inseminação, realiza-se a coleta dos embriões. Uma solução especial é introduzida no útero da doadora e depois retirada, levando consigo os embriões.</p>
+                        </div>
+                        <div class="lg:w-1/2 gallery-item rounded-lg reveal-zoom"><img src="https://placehold.co/500x300/556B2F/FFFFFF?text=Processo+MOET" class="w-full"></div>
+                    </div>
+                     <div class="flex flex-col lg:flex-row-reverse items-center gap-8 reveal">
+                        <div class="lg:w-1/2">
+                            <p><strong>Seleção de Embriões:</strong> Os embriões coletados são filtrados e examinados sob um microscópio para avaliação da qualidade. Somente os embriões viáveis são selecionados para transferência ou criopreservação.</p>
+                        </div>
+                        <div class="lg:w-1/2 gallery-item rounded-lg reveal-zoom"><img src="https://placehold.co/500x300/8B4513/FFFFFF?text=Seleção+de+Embriões" class="w-full"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 reveal">
+                        <div class="field-card p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Melhoramento genético rápido</li>
+                                <li>Flexibilidade (congelação de embriões)</li>
+                            </ul>
+                        </div>
+                        <div class="field-card p-6 rounded-lg">
+                            <h4 class="text-xl font-bold text-red-color mb-3">Desvantagens</h4>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Custo e manejo</li>
+                                <li>Complicações hormonais</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-24">
+                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold"><span class="text-highlight">TOUROS</span> - SELEÇÃO E ANÁLISE</h2>
+                     <p class="text-lg text-gray-600 mt-4">A seleção do touro ideal para reprodução envolve considerar várias características genéticas e fenotípicas, além de utilizar ferramentas de avaliação genética.</p>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-6 text-center reveal">E Qual Touro Selecionar?</h3>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
+                    <div class="gallery-item rounded-lg reveal" style="transition-delay: 100ms;">
+                        <img src="https://placehold.co/400x400/8B4513/FFFFFF?text=TOURO+1" alt="Touro 1" class="w-full h-auto object-cover">
+                        <div class="caption">TOURO 1</div>
+                    </div>
+                    <div class="gallery-item rounded-lg reveal" style="transition-delay: 200ms;">
+                        <img src="https://placehold.co/400x400/556B2F/FFFFFF?text=TOURO+2" alt="Touro 2" class="w-full h-auto object-cover">
+                         <div class="caption">TOURO 2</div>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto mb-12 reveal">
+                     <div class="field-card p-8 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-center">Avaliação para a Seleção</h3>
+                        <p class="text-gray-600 mb-4"><strong>Avaliação Genética (DEP):</strong> Utilizar a régua de DEP para avaliar as características genéticas dos touros. Isso inclui métricas como peso ao nascer, peso ao desmame, peso ao ano, eficiência alimentar, circunferência escrotal, e outras características.</p>
+                        <div class="p-4 rounded-lg bg-amber-50 border border-amber-200">
+                             <p><strong>Exemplo:</strong> Touro 01 pode ter uma DEP de peso ao nascer de +2 kg, enquanto Touro 02 tem uma DEP de +0,5 kg. Dependendo do objetivo, como minimizar distocia em novilhas, o touro com a DEP mais baixa pode ser preferido.</p>
+                        </div>
+                        <p class="mt-4 text-gray-600"><strong>Avaliação Fenotípica:</strong> Avaliar características visíveis como conformação corporal, musculatura, estrutura óssea, pigmentação, e outras características físicas.</p>
+                     </div>
+                </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="field-card p-6 rounded-lg reveal"><h4 class="text-xl font-bold">Histórico de Saúde e Fertilidade</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold">Avaliação da progênie</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold">Adaptabilidade ao ambiente</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal"><h4 class="text-xl font-bold">Resistência a doenças e longevidade</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold">Habilidade materna</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold">Eficiência alimentar</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal"><h4 class="text-xl font-bold">Capacidade de ganho de peso</h4></div>
+                    <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold">Precocidade reprodutiva</h4></div>
+                </div>
+                
+                 <div class="max-w-4xl mx-auto mb-16 reveal">
+                    <div class="field-card rounded-lg p-8 border-2 border-highlight-color">
+                        <p class="text-gray-700 mb-4">Ao analisar dois touros, inicialmente a escolha poderia ser feita apenas pela aparência, mas ao acessar as informações de DEP, o touro 02 mostrou ser geneticamente superior apesar de não ser o mais atraente visualmente.</p>
+                        <p class="text-gray-700">Esse touro apresentou melhores valores em características cruciais como peso ao desmame, eficiência alimentar e habilidade materna de suas filhas, levando à escolha deste como o touro ideal para os objetivos específicos do rebanho.</p>
+                    </div>
+                </div>
+
+                 <h3 class="text-2xl font-bold mb-6 text-center reveal">Aprendendo a Analisar o Sumário e as DEPs</h3>
+                 <div class="flex flex-col md:flex-row justify-center items-stretch gap-8 mb-16">
+                     <div class="gallery-item rounded-lg reveal-zoom md:w-1/3">
+                         <img src="https://placehold.co/400x600/3a3a3a/FFFFFF?text=Sumário+de+Touro" alt="Sumário de Touro" class="w-full h-full object-cover">
+                     </div>
+                      <div class="gallery-item rounded-lg reveal-zoom md:w-1/3">
+                         <img src="https://placehold.co/400x600/3a3a3a/FFFFFF?text=Análise+DEPs" alt="Análise DEPs" class="w-full h-full object-cover">
+                     </div>
+                 </div>
+
+                 <div class="max-w-4xl mx-auto mb-12 text-center reveal">
+                     <h3 class="text-2xl font-bold mb-4">Entenda as Abreviaturas de Cada Catálogo</h3>
+                     <div class="gallery-item rounded-lg">
+                         <img src="https://placehold.co/800x400/fdfaf6/3a3a3a?text=Imagem+com+Abreviaturas" alt="Abreviaturas de Catálogo" class="w-full h-auto object-cover">
+                     </div>
+                 </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 reveal">
+                    <div class="field-card p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens (Monta Natural)</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Custo</li>
+                            <li>Não necessita mão de obra especializada</li>
+                            <li>Não necessita de maiores investimentos</li>
+                            <li>Menor movimentação com o rebanho</li>
+                        </ul>
+                    </div>
+                    <div class="field-card p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-red-color mb-3">Limitantes</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Custo do investimento / Capital imobilizado</li>
+                            <li>Dificuldade de encontrar reprodutores</li>
+                            <li>Informações limitadas / Filiação desconhecida</li>
+                            <li>Risco de acidentes e deságio no descarte</li>
+                            <li>Despadronização na produção</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- IA & IATF SECTION -->
+            <section class="mb-24">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold">INSEMINAÇÃO ARTIFICIAL <span class="text-highlight">(IA & IATF)</span></h2>
+                </div>
+                <div class="flex flex-col lg:flex-row items-center gap-12 mb-12">
+                     <div class="lg:w-1/2 reveal">
+                        <h3 class="text-2xl font-bold mb-3">Inseminação Artificial (IA)</h3>
+                        <p class="text-gray-600">A primeira inseminação artificial (IA) registrada no Brasil ocorreu em 1940, mas a técnica só ganhou impulso a partir de 1970. A IA tradicional envolve a observação de cio nas vacas para determinar o momento ideal para inseminação.</p>
+                        <h3 class="text-2xl font-bold mt-6 mb-3">Inseminação Artificial em Tempo Fixo (IATF)</h3>
+                        <p class="text-gray-600">Com a evolução da técnica, surgiu a IATF, que permite inseminar as vacas sem a necessidade de observar o cio, utilizando protocolos de sincronização hormonal. Isso aumenta a eficiência reprodutiva, pois todas as vacas são inseminadas em um período pré-determinado.</p>
+                     </div>
+                      <div class="lg:w-1/2 grid grid-cols-1 gap-8 reveal-zoom">
+                        <img src="https://placehold.co/500x300/556B2F/FFFFFF?text=Protocolo+IATF" alt="Protocolo IATF" class="w-full h-auto object-cover rounded-lg">
+                        <img src="https://placehold.co/500x300/8B4513/FFFFFF?text=Aplicação+IATF" alt="Aplicação IATF" class="w-full h-auto object-cover rounded-lg">
+                      </div>
+                </div>
+                 <div class="text-center mt-12 reveal">
+                    <p class="text-gray-600 text-lg max-w-4xl mx-auto">A IATF revolucionou a reprodução bovina ao facilitar a gestão reprodutiva e melhorar as taxas de concepção, sendo uma técnica amplamente adotada nos rebanhos leiteiros e de corte.</p>
+                    <div class="gallery-item rounded-lg max-w-2xl mx-auto mt-8"><img src="https://placehold.co/600x300/fdfaf6/3a3a3a?text=Resultados+IATF"></div>
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 reveal">
+                    <div class="field-card p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Multiplicação genética de touros superiores</li>
+                            <li>Controle reprodutivo (sem observação de cio)</li>
+                            <li>Eficiência econômica</li>
+                            <li>Melhor controle zootécnico e padronização</li>
+                            <li>Concentração das concepções e partos</li>
+                        </ul>
+                    </div>
+                    <div class="field-card p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-red-color mb-3">Limitantes</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Necessidade de mão de obra especializada</li>
+                            <li>Custo inicial com hormônios e treinamento</li>
+                            <li>50% da genética é da mãe</li>
+                             <li>Infraestrutura e maior movimentação</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- PIVE SECTION -->
+            <section class="mb-24">
+                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold">PRODUÇÃO IN VITRO DE EMBRIÕES <span class="text-highlight">(PIVE / FIV)</span></h2>
+                </div>
+                 <h3 class="text-2xl font-bold mb-6 text-center reveal">Qual a forma para trabalhar com embriões?</h3>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                     <div class="text-center reveal">
+                        <img src="https://placehold.co/300x300/8B4513/FFFFFF?text=1" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
+                        <p class="font-semibold">Multiplicar os melhores animais da minha propriedade</p>
+                     </div>
+                      <div class="text-center reveal" style="transition-delay: 200ms;">
+                        <img src="https://placehold.co/300x300/556B2F/FFFFFF?text=2" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
+                        <p class="font-semibold">Adquirir animais melhoradores (doadoras)</p>
+                     </div>
+                      <div class="text-center reveal" style="transition-delay: 400ms;">
+                        <img src="https://placehold.co/300x300/CD853F/FFFFFF?text=3" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
+                        <p class="font-semibold">Adquirir Embriões</p>
+                     </div>
+                 </div>
+
+                <h3 class="text-2xl font-bold mb-6 text-center reveal">Relembrando as Etapas da PIVE</h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 mb-12 text-center">
+                    <div class="reveal"><img src="https://placehold.co/200x200/3a3a3a/FFFFFF?text=1" class="rounded-full mx-auto mb-2"><p>Sincronização</p></div>
+                    <div class="reveal" style="transition-delay: 100ms;"><img src="https://placehold.co/200x200/3a3a3a/FFFFFF?text=2" class="rounded-full mx-auto mb-2"><p>Aspiração Folicular</p></div>
+                    <div class="reveal" style="transition-delay: 200ms;"><img src="https://placehold.co/200x200/3a3a3a/FFFFFF?text=3" class="rounded-full mx-auto mb-2"><p>Fertilização In Vitro</p></div>
+                    <div class="reveal" style="transition-delay: 300ms;"><img src="https://placehold.co/200x200/3a3a3a/FFFFFF?text=4" class="rounded-full mx-auto mb-2"><p>Transferência</p></div>
+                    <div class="reveal" style="transition-delay: 400ms;"><img src="https://placehold.co/200x200/3a3a3a/FFFFFF?text=5" class="rounded-full mx-auto mb-2"><p>Novas Progênies</p></div>
+                </div>
+                 
+                <p class="text-lg text-gray-600 mt-4 max-w-4xl mx-auto text-center reveal">A Fertilização In Vitro (FIV) envolve a coleta de ovócitos das doadoras, que são então fertilizados no laboratório com sêmen de touros selecionados. Os embriões resultantes são cultivados até o estágio apropriado e, em seguida, transferidos para receptoras. É uma técnica complexa que requer um laboratório especializado, mas oferece alta eficiência e flexibilidade na produção de embriões.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-4xl mx-auto reveal">
+                    <div class="field-card p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Alta eficiência genética</li>
+                            <li>Flexibilidade temporal (criopreservação)</li>
+                        </ul>
+                    </div>
+                    <div class="field-card p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-red-color mb-3">Limitantes</h4>
+                        <ul class="list-disc list-inside space-y-2">
+                             <li>Custo e infraestrutura</li>
+                             <li>Complexidade técnica</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+             <!-- TETF SECTION -->
+            <section class="mb-24">
+                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                     <h2 class="text-3xl md:text-4xl font-bold">TRANSFERÊNCIA DE EMBRIÕES EM TEMPO FIXO <span class="text-highlight">(TETF)</span></h2>
+                </div>
+                <div class="max-w-4xl mx-auto reveal text-lg text-gray-600 text-center space-y-4 mb-12">
+                     <p>Nesta etapa, realiza-se a transferência do embrião, que pode ter sido produzido in vivo (na doadora) ou in vitro (no laboratório de FIV). Este embrião é originado a partir da fertilização do oócito de uma doadora com alto valor genético e zootécnico, utilizando o sêmen de um touro melhorador.</p>
+                     <p>A inovulação do embrião resultante é realizada durante a fase de diestro, no corno uterino correspondente a ovulação de uma receptora (barriga de aluguel). É realizada em um momento fixo, determinado por protocolos de sincronização hormonal, similarmente à IATF.</p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
+                     <div class="lg:w-1/2 reveal">
+                        <h3 class="text-2xl font-bold mb-4">Escolha das Receptoras</h3>
+                        <p class="mb-4">Qual categoria usar? Novilhas, Primíparas, Multíparas Solteiras ou Paridas.</p>
+                        <h4 class="text-xl font-bold mb-2">Manejo e Identificação</h4>
+                        <p class="mb-4">Numeração a fogo, brincos, tintas, controle sanitário rigoroso.</p>
+                        <h4 class="text-xl font-bold mb-2">ECC ou Histórico?</h4>
+                        <p>O escore de condição corporal (ECC) ideal é entre 2,5 e 3. No entanto, é importante analisar o histórico do animal e as condições da fazenda.</p>
+                     </div>
+                     <div class="lg:w-1/2 reveal-zoom">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                             <div class="field-card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                                <ul class="list-disc list-inside space-y-1 text-sm">
+                                    <li>Concentra os nascimentos</li>
+                                    <li>Bezerros mais "do cedo"</li>
+                                    <li>Facilita manejos</li>
+                                    <li>Melhora índices reprodutivos</li>
+                                    <li>Padroniza lotes</li>
+                                    <li>Uso de embriões congelados/sexados</li>
+                                    <li>Agrega valor e acelera evolução genética</li>
+                                    <li>Permite uso de doadoras pré-púberes e gestantes</li>
+                                </ul>
+                            </div>
+                            <div class="field-card p-6 rounded-lg">
+                                <h4 class="text-xl font-bold text-red-color mb-3">Limitantes</h4>
+                                <ul class="list-disc list-inside space-y-2 text-sm">
+                                    <li>Infraestrutura e mão de obra</li>
+                                    <li>Maior investimento inicial</li>
+                                    <li>Maior tempo de manejo</li>
+                                    <li>Burocracias com associações</li>
+                                </ul>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto reveal">
+                     <h3 class="text-2xl font-bold mb-6 text-center">IATF x TETF: Quais as diferenças?</h3>
+                     <div class="flex flex-col md:flex-row items-center gap-8">
+                         <div class="md:w-1/2"><img src="https://placehold.co/500x300/3a3a3a/FFFFFF?text=Técnica+Comparativa" class="rounded-lg w-full"></div>
+                         <div class="md:w-1/2">
+                             <h4 class="text-xl font-bold mb-2">E na TETF, existe diferença no protocolo?</h4>
+                             <p>Na IA ou IATF, depositamos o sêmen no útero após transpassar os anéis cervicais. Já na TETF, inovulamos o embrião para o corno uterino correspondente à ovulação.</p>
+                         </div>
+                     </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+                <div class="field-card p-8 rounded-lg reveal"><h4 class="text-xl font-bold mb-3">Condições Ambientais</h4><p class="text-gray-600">Clima e Disponibilidade de Recursos: As condições climáticas e a disponibilidade de recursos, como alimentação e água, devem ser avaliadas...</p></div>
+                <div class="field-card p-8 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold mb-3">Recursos Financeiros</h4><p class="text-gray-600">Custo e Retorno: O investimento necessário para cada biotecnologia varia...</p></div>
+                <div class="field-card p-8 rounded-lg reveal border-2 border-amber-600" style="transition-delay: 200ms;"><h4 class="text-xl font-bold text-amber-700 mb-3">Infraestrutura e Mão de Obra</h4><p class="text-gray-600">Disponibilidade de Equipamentos e Pessoas Qualificadas: Algumas biotecnologias, como a FIV e a clonagem, necessitam de laboratórios bem equipados...</p></div>
+                <div class="field-card p-8 rounded-lg reveal"><h4 class="text-xl font-bold mb-3">Genética do Rebanho</h4><p class="text-gray-600">Qualidade Genética Atual: A qualidade genética do rebanho atual influencia a escolha...</p></div>
+                <div class="field-card p-8 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold mb-3">Objetivos a Curto, Médio e Longo Prazo</h4><p class="text-gray-600">Planejamento Estratégico: É essencial ter clareza dos objetivos do projeto...</p></div>
+                 <div class="field-card p-8 rounded-lg reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold mb-3">Condições de Mercado</h4><p class="text-gray-600">Demanda e Preço dos Produtos: O mercado deve ser considerado...</p></div>
+                 <div class="field-card p-8 rounded-lg reveal md:col-span-2 lg:col-span-3"><h4 class="text-xl font-bold mb-3">Logística e Suporte Técnico</h4><p class="text-gray-600">Facilidade de Implementação e Suporte disponível: A facilidade de implementar a biotecnologia na propriedade e o suporte técnico disponível são cruciais...</p></div>
+            </section>
+
+             <section class="mt-24 text-center max-w-4xl mx-auto reveal">
+                <p class="text-gray-600 text-lg">
+                    Portanto, a escolha da biotecnologia ideal deve ser um processo bem planejado, levando em conta todos esses fatores para garantir a maximização dos resultados e a sustentabilidade do projeto a longo prazo.
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="text-center py-8 mt-16 border-t border-gray-200 bg-white/30">
+        <p class="text-gray-500">Desenvolvido para a Pecuária de Precisão.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll animations
+            const revealElements = document.querySelectorAll('.reveal, .reveal-zoom');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(element => observer.observe(element));
+
+            // Accordion functionality
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    accordionItems.forEach(otherItem => otherItem.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Timeline functionality
+            const timeline = document.getElementById('timeline');
+            if(timeline) {
+                const tabs = timeline.querySelectorAll('.timeline-tab');
+                const contents = timeline.querySelectorAll('.timeline-content');
+                
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const tabId = tab.dataset.tab;
+
+                        tabs.forEach(t => t.classList.remove('active'));
+                        tab.classList.add('active');
+
+                        contents.forEach(content => {
+                            if(content.dataset.content === tabId) {
+                                content.classList.add('active');
+                            } else {
+                                content.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+            }
+
+        });
+
+        // Keyframes for title animation
+        const styleSheet = document.createElement("style");
+        styleSheet.innerText = `
+            @keyframes fadeInWord {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
