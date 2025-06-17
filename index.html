@@ -70,7 +70,7 @@
         }
         
         .reveal-zoom {
-             opacity: 0;
+            opacity: 0;
             transform: scale(0.95);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
@@ -210,14 +210,14 @@
         
         @media (max-width: 1023px) {
             .is-visible .info-arrow-box {
-                 transform: translateX(-50%) translateY(0);
+                transform: translateX(-50%) translateY(0);
             }
         }
 
 
         .info-arrow {
-             width: 80px;
-             height: 60px;
+            width: 80px;
+            height: 60px;
         }
         .info-bubble {
             background-color: var(--secondary-color);
@@ -317,7 +317,7 @@
                     <p class="text-gray-600">
                         Produção de Carne ou Leite: O objetivo principal (produção de carne ou leite) irá influenciar a escolha da biotecnologia. Técnicas como IATF podem ser mais adequadas para produção de carne, enquanto a FIV pode ser preferida em rebanhos leiteiros de alta performance.
                     </p>
-                     <p class="text-gray-600 mt-4">
+                    <p class="text-gray-600 mt-4">
                         Dentro de uma mesma raça podemos ter objetivos de melhoramento genético diferentes.
                     </p>
                 </div>
@@ -417,20 +417,54 @@
                     </div>
                 </div>
                  <div class="text-center mt-12 reveal">
-                    <p class="text-gray-600 text-lg max-w-4xl mx-auto">Entender o ciclo da pecuária é essencial para a gestão eficiente e sustentável dos rebanhos. Conhecimento sobre os altos e baixos do mercado permite aos produtores tomar decisões informadas sobre reprodução, abate e investimentos em tecnologias reprodutivas, maximizando assim a produtividade e a rentabilidade a longo prazo.</p>
+                     <p class="text-gray-600 text-lg max-w-4xl mx-auto">Entender o ciclo da pecuária é essencial para a gestão eficiente e sustentável dos rebanhos. Conhecimento sobre os altos e baixos do mercado permite aos produtores tomar decisões informadas sobre reprodução, abate e investimentos em tecnologias reprodutivas, maximizando assim a produtividade e a rentabilidade a longo prazo.</p>
                  </div>
             </section>
 
             <section class="mb-24">
-                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
                      <h2 class="text-3xl md:text-4xl font-bold mb-4">NECESSIDADE DE REPOSIÇÃO DE TOUROS PARA <span class="text-highlight">60 MILHÕES DE VACAS</span> DO REBANHO BRASILEIRO</h2>
                 </div>
                 
                 <div class="flex flex-col lg:flex-row-reverse items-center justify-center gap-12 mb-16">
                     <div class="lg:w-1/2 reveal-zoom relative flex justify-center items-center">
                         <div class="relative w-full max-w-md">
+                            <!-- REMOVED: <img src="https://placehold.co/500x350/fdfaf6/3a3a3a?text=IMAGEM+DA+TABELA" alt="Tabela de reposição de touros" class="w-full h-auto object-cover"> -->
                             <div class="gallery-item rounded-lg">
-                                <img src="https://placehold.co/500x350/fdfaf6/3a3a3a?text=IMAGEM+DA+TABELA" alt="Tabela de reposição de touros" class="w-full h-auto object-cover">
+                                <table class="w-full text-left table-auto border-collapse border border-gray-300 rounded-lg overflow-hidden">
+                                    <thead class="bg-primary-color text-white">
+                                        <tr>
+                                            <th class="p-3 border border-gray-300">Característica</th>
+                                            <th class="p-3 border border-gray-300">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white/70">
+                                        <tr>
+                                            <td class="p-3 border border-gray-300">Número de fêmeas em reprodução</td>
+                                            <td class="p-3 border border-gray-300">60.000.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-300">Média de vacas/touro</td>
+                                            <td class="p-3 border border-gray-300">30</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-300">Touros trabalhando na pecuária</td>
+                                            <td class="p-3 border border-gray-300">2.000.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-300">Média de reposição por ano (%)</td>
+                                            <td class="p-3 border border-gray-300">20</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-300">Necessidade de touros de reposição por ano</td>
+                                            <td class="p-3 border border-gray-300">400.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 border border-gray-300">Touros geneticamente superiores oferecidos ao mercado</td>
+                                            <td class="p-3 border border-gray-300">60.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="info-arrow-box">
                                 <svg class="info-arrow" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M 10 90 Q 30 20 90 10" stroke="#556B2F" fill="transparent" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#556B2F"/></marker></defs></svg>
@@ -442,40 +476,40 @@
                         <h3 class="text-2xl font-bold mb-6">Vamos Analisar a Tabela:</h3>
                         <div class="space-y-6">
                              <div class="flex items-start gap-4">
-                                <div class="circle-container reveal flex-shrink-0">
-                                    <svg class="circle-svg w-full h-full" viewBox="0 0 150 150">
-                                        <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
-                                        <circle class="circle-progress" cx="75" cy="75" r="70"></circle>
-                                    </svg>
-                                    <div class="circle-text text-center">
-                                        <span class="block text-3xl font-bold">15%</span>
-                                        <span class="block text-sm">DO MERCADO</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Estimativa do Rebanho</h4>
-                                    <p class="text-gray-600">O Brasil possui mais de 220 milhões de cabeças de gado, com aproximadamente 60 milhões de fêmeas em reprodução.</p>
-                                </div>
-                            </div>
-                             <div class="ml-8 mt-4 space-y-4">
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Relação Touros/Fêmeas</h4>
-                                    <p class="text-gray-600">Para cada 30 fêmeas, é necessário um touro, resultando em uma necessidade de aproximadamente 2 milhões de touros ativos no Brasil por ano.</p>
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold mb-2">Reposição Anual e Qualidade Genética</h4>
-                                    <p class="text-gray-600">Considerando uma taxa de reposição de 20%, são necessários 400 mil touros para reposição anualmente. Apenas uma fração (cerca de 15%) vem de programas de melhoramento, o que pode ser uma visão otimista.</p>
-                                </div>
+                                 <div class="circle-container reveal flex-shrink-0">
+                                     <svg class="circle-svg w-full h-full" viewBox="0 0 150 150">
+                                         <circle class="circle-bg" cx="75" cy="75" r="70"></circle>
+                                         <circle class="circle-progress" cx="75" cy="75" r="70"></circle>
+                                     </svg>
+                                     <div class="circle-text text-center">
+                                         <span class="block text-3xl font-bold">15%</span>
+                                         <span class="block text-sm">DO MERCADO</span>
+                                     </div>
+                                 </div>
                                  <div>
-                                    <h4 class="text-xl font-bold mb-2">Desafio na Reposição</h4>
-                                    <p class="text-gray-600">Encontrar touros com as características genéticas desejáveis é um desafio, especialmente em quantidades suficientes para atender à demanda de rebanhos grandes.</p>
-                                </div>
-                            </div>
-                        </div>
+                                     <h4 class="text-xl font-bold mb-2">Estimativa do Rebanho</h4>
+                                     <p class="text-gray-600">O Brasil possui mais de 220 milhões de cabeças de gado, com aproximadamente 60 milhões de fêmeas em reprodução.</p>
+                                 </div>
+                             </div>
+                             <div class="ml-8 mt-4 space-y-4">
+                                 <div>
+                                     <h4 class="text-xl font-bold mb-2">Relação Touros/Fêmeas</h4>
+                                     <p class="text-gray-600">Para cada 30 fêmeas, é necessário um touro, resultando em uma necessidade de aproximadamente 2 milhões de touros ativos no Brasil por ano.</p>
+                                 </div>
+                                 <div>
+                                     <h4 class="text-xl font-bold mb-2">Reposição Anual e Qualidade Genética</h4>
+                                     <p class="text-gray-600">Considerando uma taxa de reposição de 20%, são necessários 400 mil touros para reposição anualmente. Apenas uma fração (cerca de 15%) vem de programas de melhoramento, o que pode ser uma visão otimista.</p>
+                                 </div>
+                                  <div>
+                                     <h4 class="text-xl font-bold mb-2">Desafio na Reposição</h4>
+                                     <p class="text-gray-600">Encontrar touros com as características genéticas desejáveis é um desafio, especialmente em quantidades suficientes para atender à demanda de rebanhos grandes.</p>
+                                 </div>
+                             </div>
+                         </div>
                     </div>
                 </div>
                  <div class="mt-12 text-center max-w-4xl mx-auto reveal">
-                    <p class="text-gray-600 text-lg">Estes pontos ressaltam a importância de investimentos em biotecnologias reprodutivas e programas de melhoramento genético para atender à grande demanda por touros no Brasil, garantindo a eficiência e produtividade do rebanho bovino.</p>
+                     <p class="text-gray-600 text-lg">Estes pontos ressaltam a importância de investimentos em biotecnologias reprodutivas e programas de melhoramento genético para atender à grande demanda por touros no Brasil, garantindo a eficiência e produtividade do rebanho bovino.</p>
                  </div>
             </section>
 
@@ -484,15 +518,15 @@
                      <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">ESTAÇÃO</span> REPRODUTIVA</h2>
                      <p class="text-lg text-gray-600 mt-4">A estação de monta nos bovinos é o período específico do ano em que a reprodução é planejada e controlada para maximizar a eficiência reprodutiva do rebanho. Durante esse período, as fêmeas bovinas são expostas a técnicas de reprodução de eleição da propriedade, com o objetivo de garantir que a maior parte do rebanho conceba em um intervalo de tempo definido.</p>
                      <p class="text-lg text-gray-600 mt-4">A estação de monta é estrategicamente estabelecida para coincidir com as melhores condições climáticas e de disponibilidade de pasto, de modo a otimizar a saúde e o desenvolvimento dos bezerros nascidos.</p>
-                </div>
+                 </div>
 
                 <div class="max-w-5xl mx-auto reveal">
                     <h3 class="text-2xl md:text-3xl font-bold mb-8 text-center">Programação Fetal</h3>
                     <div class="flex flex-col lg:flex-row items-center gap-12 mb-12">
                         <div class="lg:w-1/2 reveal-zoom">
                              <div class="gallery-item rounded-lg">
-                                <img src="PROGRAMAÇÃO FETAL.jpg" alt="Programação Fetal" class="w-full h-auto object-cover">
-                            </div>
+                                 <img src="PROGRAMAÇÃO FETAL.jpg" alt="Programação Fetal" class="w-full h-auto object-cover">
+                             </div>
                         </div>
                         <div class="lg:w-1/2 reveal" style="transition-delay: 200ms;">
                             <p class="text-gray-600">Note a importância de uma boa nutrição desde os primeiros meses de gestação para garantir a qualidade muscular, saúde do bezerro e como consequência maior peso a desmama.</p>
@@ -522,8 +556,8 @@
                 <div class="flex flex-col lg:flex-row-reverse items-center gap-12 mb-12">
                     <div class="lg:w-1/2 reveal-zoom">
                          <div class="gallery-item rounded-lg">
-                            <img src="PROGRAMAÇAÕ FETAL2.jpg" alt="Mês de Nascimento" class="w-full h-auto object-cover">
-                        </div>
+                             <img src="PROGRAMAÇAÕ FETAL2.jpg" alt="Mês de Nascimento" class="w-full h-auto object-cover">
+                         </div>
                     </div>
                     <div class="lg:w-1/2 reveal" style="transition-delay: 200ms;">
                         <h3 class="text-2xl font-bold mb-4">Mês de Nascimento</h3>
@@ -550,7 +584,7 @@
                             <span class="font-bold">Produtividade e rentabilidade</span>
                              <svg class="animated-arrow growth-arrow" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M12 5L5 12M12 5L19 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
-                     </div>
+                    </div>
                 </div>
             </section>
             
@@ -579,16 +613,16 @@
             </section>
 
             <section class="mb-24">
-                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
                      <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">AUDITAGEM E CONTROLE</span> DE ESTOQUE DO REBANHO</h2>
-                      <p class="text-lg text-gray-600 mt-4">A auditagem e o controle de estoque de rebanho são cruciais para a gestão eficiente da pecuária, pois permitem um monitoramento preciso e detalhado do desempenho e das necessidades do rebanho.</p>
-                </div>
+                     <p class="text-lg text-gray-600 mt-4">A auditagem e o controle de estoque de rebanho são cruciais para a gestão eficiente da pecuária, pois permitem um monitoramento preciso e detalhado do desempenho e das necessidades do rebanho.</p>
+                 </div>
 
                 <div class="flex flex-col lg:flex-row items-center gap-12 mb-16">
                      <div class="lg:w-1/2 reveal-zoom">
-                        <div class="gallery-item rounded-lg">
-                            <img src="MONITORAMENTO.png" alt="Controle do Rebanho" class="w-full h-auto object-cover">
-                        </div>
+                         <div class="gallery-item rounded-lg">
+                             <img src="MONITORAMENTO.png" alt="Controle do Rebanho" class="w-full h-auto object-cover">
+                         </div>
                     </div>
                     <div class="lg:w-1/2 reveal">
                          <h3 class="text-2xl font-bold mb-6">Importância</h3>
@@ -611,11 +645,11 @@
             </section>
             
              <section class="mb-24">
-                <div class="text-center max-w-4xl mx-auto mb-12 reveal">
+                 <div class="text-center max-w-4xl mx-auto mb-12 reveal">
                      <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="text-highlight">BIOTECNOLOGIAS</span> DA REPRODUÇÃO</h2>
                      <p class="text-lg text-gray-600 mt-4">Destaca-se que existem diversas biotecnologias, embora muitas não sejam amplamente difundidas comercialmente. Exemplos incluem:</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                 </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 100ms;"><h4 class="text-2xl font-bold">TIFOI</h4></div>
                     <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;"><h4 class="text-2xl font-bold">MOET</h4></div>
                     <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 300ms;"><h4 class="text-2xl font-bold">CLONAGEM</h4></div>
@@ -633,9 +667,9 @@
                 </div>
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                      <div class="lg:w-1/2 reveal-zoom">
-                        <div class="gallery-item rounded-lg">
-                            <img src="POSTER.png" alt="TIFOI" class="w-full h-auto object-cover">
-                        </div>
+                         <div class="gallery-item rounded-lg">
+                             <img src="POSTER.png" alt="TIFOI" class="w-full h-auto object-cover">
+                         </div>
                     </div>
                     <div class="lg:w-1/2 reveal">
                         <p class="text-gray-600 mb-8">A TIFOI é uma técnica emergente em reprodução bovina que envolve três tipos de animais: doadoras, ovuladoras e receptoras. A doadora fornece os oócitos imaturos, que são aspirados e introduzidos nos folículos pré-ovulatórios da fêmea ovuladora. Após a ovulação induzida, a fêmea ovuladora é inseminada e, depois de sete dias, realiza-se uma lavagem uterina para coletar os embriões formados, que podem ser implantados nas receptoras ou congelados. Esta técnica não necessita de um laboratório de alto custo, mas possui complicações relacionadas ao controle preciso de ovulação e fertilização.</p>
@@ -667,9 +701,9 @@
                 </div>
                  <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
                      <div class="lg:w-1/2 reveal-zoom">
-                        <div class="gallery-item rounded-lg">
-                            <img src="MELHORAMETO GENETICO.png" alt="Clonagem" class="w-full h-auto object-cover">
-                        </div>
+                         <div class="gallery-item rounded-lg">
+                             <img src="MELHORAMETO GENETICO.png" alt="Clonagem" class="w-full h-auto object-cover">
+                         </div>
                     </div>
                     <div class="lg:w-1/2 reveal">
                         <p class="text-gray-600 mb-8">A clonagem é uma biotecnologia avançada que permite a criação de cópias genéticas de um animal. O processo envolve a coleta de material genético de um animal desejado, que é inserido em um óvulo enucleado, criando um embrião clonado. Este embrião é então implantado em uma receptora. Embora a clonagem não seja considerada uma técnica de melhoramento genético por si só, ela permite a reprodução de indivíduos com características genéticas desejáveis. Atualmente, a clonagem é mais comum em equinos, mas também é aplicada em bovinos para fins específicos.</p>
@@ -738,9 +772,9 @@
 
             <section class="mb-24">
                  <div class="text-center max-w-4xl mx-auto mb-12 reveal">
-                     <h2 class="text-3xl md:text-4xl font-bold"><span class="text-highlight">TOUROS</span> - SELEÇÃO E ANÁLISE</h2>
+                     <h2 class="text-3xl md:text-4xl font-bold">TOUROS - SELEÇÃO E ANÁLISE</h2>
                      <p class="text-lg text-gray-600 mt-4">A seleção do touro ideal para reprodução envolve considerar várias características genéticas e fenotípicas, além de utilizar ferramentas de avaliação genética.</p>
-                </div>
+                 </div>
 
                 <h3 class="text-2xl font-bold mb-6 text-center reveal">E Qual Touro Selecionar?</h3>
                 <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-16">
@@ -768,7 +802,7 @@
                  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                     <div class="field-card p-6 rounded-lg reveal"><h4 class="text-xl font-bold">Histórico de Saúde e Fertilidade</h4></div>
                     <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold">Avaliação da progênie</h4></div>
-                    <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold">Adaptabilidade ao ambiente</h4></div>
+                    <div class="field-card p-6 rounded-lg text-center reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold">Adaptabilidade ao ambiente</h4></div>
                     <div class="field-card p-6 rounded-lg reveal"><h4 class="text-xl font-bold">Resistência a doenças e longevidade</h4></div>
                     <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 100ms;"><h4 class="text-xl font-bold">Habilidade materna</h4></div>
                     <div class="field-card p-6 rounded-lg reveal" style="transition-delay: 200ms;"><h4 class="text-xl font-bold">Eficiência alimentar</h4></div>
@@ -777,7 +811,7 @@
                 </div>
                 
                  <div class="max-w-4xl mx-auto mb-16 reveal">
-                    <div class="field-card rounded-lg p-8 border-2 border-highlight-color">
+                     <div class="field-card rounded-lg p-8 border-2 border-highlight-color">
                         <p class="text-gray-700 mb-4">Ao analisar dois touros, inicialmente a escolha poderia ser feita apenas pela aparência, mas ao acessar as informações de DEP, o touro 02 mostrou ser geneticamente superior apesar de não ser o mais atraente visualmente.</p>
                         <p class="text-gray-700">Esse touro apresentou melhores valores em características cruciais como peso ao desmame, eficiência alimentar e habilidade materna de suas filhas, levando à escolha deste como o touro ideal para os objetivos específicos do rebanho.</p>
                     </div>
@@ -788,7 +822,7 @@
                      <div class="gallery-item rounded-lg reveal-zoom md:w-1/3">
                          <img src="SUMARIO 1.png" alt="Sumário de Touro" class="w-full h-full object-cover">
                      </div>
-                      <div class="gallery-item rounded-lg reveal-zoom md:w-1/3">
+                     <div class="gallery-item rounded-lg reveal-zoom md:w-1/3">
                          <img src="SUMARIO2.png" alt="Análise DEPs" class="w-full h-full object-cover">
                      </div>
                  </div>
@@ -835,14 +869,14 @@
                         <h3 class="text-2xl font-bold mt-6 mb-3">Inseminação Artificial em Tempo Fixo (IATF)</h3>
                         <p class="text-gray-600">Com a evolução da técnica, surgiu a IATF, que permite inseminar as vacas sem a necessidade de observar o cio, utilizando protocolos de sincronização hormonal. Isso aumenta a eficiência reprodutiva, pois todas as vacas são inseminadas em um período pré-determinado.</p>
                      </div>
-                      <div class="lg:w-1/2 grid grid-cols-1 gap-8 reveal-zoom">
+                     <div class="lg:w-1/2 grid grid-cols-1 gap-8 reveal-zoom">
                         <img src="iatf.png" alt="Protocolo IATF" class="w-full h-auto object-cover rounded-lg">
                         <img src="ANATOMIA IATF.png" alt="Aplicação IATF" class="w-full h-auto object-cover rounded-lg">
-                      </div>
+                     </div>
                 </div>
                  <div class="text-center mt-12 reveal">
-                    <p class="text-gray-600 text-lg max-w-4xl mx-auto">A IATF revolucionou a reprodução bovina ao facilitar a gestão reprodutiva e melhorar as taxas de concepção, sendo uma técnica amplamente adotada nos rebanhos leiteiros e de corte.</p>
-                    <div class="gallery-item rounded-lg max-w-2xl mx-auto mt-8"><img src="TABELA IATF.png"></div>
+                     <p class="text-gray-600 text-lg max-w-4xl mx-auto">A IATF revolucionou a reprodução bovina ao facilitar a gestão reprodutiva e melhorar as taxas de concepção, sendo uma técnica amplamente adotada nos rebanhos leiteiros e de corte.</p>
+                     <div class="gallery-item rounded-lg max-w-2xl mx-auto mt-8"><img src="TABELA IATF.png"></div>
                  </div>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 reveal">
                     <div class="field-card p-6 rounded-lg">
@@ -871,20 +905,20 @@
             <section class="mb-24">
                  <div class="text-center max-w-4xl mx-auto mb-12 reveal">
                      <h2 class="text-3xl md:text-4xl font-bold">PRODUÇÃO IN VITRO DE EMBRIÕES <span class="text-highlight">(PIVE / FIV)</span></h2>
-                </div>
+                 </div>
                  <h3 class="text-2xl font-bold mb-6 text-center reveal">Qual a forma para trabalhar com embriões?</h3>
                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                      <div class="text-center reveal">
-                        <img src="BOLA1.jpg" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
-                        <p class="font-semibold">Multiplicar os melhores animais da minha propriedade</p>
+                         <img src="BOLA1.jpg" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
+                         <p class="font-semibold">Multiplicar os melhores animais da minha propriedade</p>
                      </div>
-                      <div class="text-center reveal" style="transition-delay: 200ms;">
-                        <img src="BOLA2.png" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
-                        <p class="font-semibold">Adquirir animais melhoradores (doadoras)</p>
+                     <div class="text-center reveal" style="transition-delay: 200ms;">
+                         <img src="BOLA2.png" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
+                         <p class="font-semibold">Adquirir animais melhoradores (doadoras)</p>
                      </div>
-                      <div class="text-center reveal" style="transition-delay: 400ms;">
-                        <img src="BOLA3.jpg" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
-                        <p class="font-semibold">Adquirir Embriões</p>
+                     <div class="text-center reveal" style="transition-delay: 400ms;">
+                         <img src="BOLA3.jpg" class="rounded-full mx-auto mb-4 w-48 h-48 object-cover">
+                         <p class="font-semibold">Adquirir Embriões</p>
                      </div>
                  </div>
 
@@ -916,11 +950,11 @@
                 </div>
             </section>
             
-             <!-- TETF SECTION -->
+            <!-- TETF SECTION -->
             <section class="mb-24">
                  <div class="text-center max-w-4xl mx-auto mb-12 reveal">
                      <h2 class="text-3xl md:text-4xl font-bold">TRANSFERÊNCIA DE EMBRIÕES EM TEMPO FIXO <span class="text-highlight">(TETF)</span></h2>
-                </div>
+                 </div>
                 <div class="max-w-4xl mx-auto reveal text-lg text-gray-600 text-center space-y-4 mb-12">
                      <p>Nesta etapa, realiza-se a transferência do embrião, que pode ter sido produzido in vivo (na doadora) ou in vitro (no laboratório de FIV). Este embrião é originado a partir da fertilização do oócito de uma doadora com alto valor genético e zootécnico, utilizando o sêmen de um touro melhorador.</p>
                      <p>A inovulação do embrião resultante é realizada durante a fase de diestro, no corno uterino correspondente a ovulação de uma receptora (barriga de aluguel). É realizada em um momento fixo, determinado por protocolos de sincronização hormonal, similarmente à IATF.</p>
@@ -936,30 +970,30 @@
                         <p>O escore de condição corporal (ECC) ideal é entre 2,5 e 3. No entanto, é importante analisar o histórico do animal e as condições da fazenda.</p>
                      </div>
                      <div class="lg:w-1/2 reveal-zoom">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                              <div class="field-card p-6 rounded-lg">
-                                <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
-                                <ul class="list-disc list-inside space-y-1 text-sm">
-                                    <li>Concentra os nascimentos</li>
-                                    <li>Bezerros mais "do cedo"</li>
-                                    <li>Facilita manejos</li>
-                                    <li>Melhora índices reprodutivos</li>
-                                    <li>Padroniza lotes</li>
-                                    <li>Uso de embriões congelados/sexados</li>
-                                    <li>Agrega valor e acelera evolução genética</li>
-                                    <li>Permite uso de doadoras pré-púberes e gestantes</li>
-                                </ul>
-                            </div>
-                            <div class="field-card p-6 rounded-lg">
-                                <h4 class="text-xl font-bold text-red-color mb-3">Limitantes</h4>
-                                <ul class="list-disc list-inside space-y-2 text-sm">
-                                    <li>Infraestrutura e mão de obra</li>
-                                    <li>Maior investimento inicial</li>
-                                    <li>Maior tempo de manejo</li>
-                                    <li>Burocracias com associações</li>
-                                </ul>
-                            </div>
-                        </div>
+                                 <h4 class="text-xl font-bold text-secondary-color mb-3">Vantagens</h4>
+                                 <ul class="list-disc list-inside space-y-1 text-sm">
+                                     <li>Concentra os nascimentos</li>
+                                     <li>Bezerros mais "do cedo"</li>
+                                     <li>Facilita manejos</li>
+                                     <li>Melhora índices reprodutivos</li>
+                                     <li>Padroniza lotes</li>
+                                     <li>Uso de embriões congelados/sexados</li>
+                                     <li>Agrega valor e acelera evolução genética</li>
+                                     <li>Permite uso de doadoras pré-púberes e gestantes</li>
+                                 </ul>
+                             </div>
+                             <div class="field-card p-6 rounded-lg">
+                                 <h4 class="text-xl font-bold text-red-color mb-3">Limitantes</h4>
+                                 <ul class="list-disc list-inside space-y-2 text-sm">
+                                     <li>Infraestrutura e mão de obra</li>
+                                     <li>Maior investimento inicial</li>
+                                     <li>Maior tempo de manejo</li>
+                                     <li>Burocracias com associações</li>
+                                 </ul>
+                             </div>
+                         </div>
                      </div>
                 </div>
 
